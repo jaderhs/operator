@@ -251,6 +251,12 @@ var _ = Describe("Elasticsearch rendering tests", func() {
 
 			It("should render an elasticsearchComponent with certificate management enabled", func() {
 
+				cfg.Installation.CertificateManagement = &operatorv1.CertificateManagement{
+					CACert:             []byte("my-cert"),
+					SignerName:         "my signer name",
+					SignatureAlgorithm: "ECDSAWithSHA256",
+					KeyAlgorithm:       "ECDSAWithCurve521",
+				}
 				expectedCreateResources := []resourceTestObj{
 					{render.ECKOperatorNamespace, "", &corev1.Namespace{}, nil},
 					{"tigera-pull-secret", render.ECKOperatorNamespace, &corev1.Secret{}, nil},
@@ -283,13 +289,6 @@ var _ = Describe("Elasticsearch rendering tests", func() {
 					// Certificate management comes with two additional cluster role bindings:
 					{"tigera-elasticsearch:csr-creator", "", &rbacv1.ClusterRoleBinding{}, nil},
 					{"tigera-kibana:csr-creator", "", &rbacv1.ClusterRoleBinding{}, nil},
-				}
-
-				cfg.Installation.CertificateManagement = &operatorv1.CertificateManagement{
-					CACert:             []byte("my-cert"),
-					SignerName:         "my signer name",
-					SignatureAlgorithm: "ECDSAWithSHA256",
-					KeyAlgorithm:       "ECDSAWithCurve521",
 				}
 				component := render.LogStorage(cfg)
 
@@ -527,7 +526,6 @@ var _ = Describe("Elasticsearch rendering tests", func() {
 					},
 				},
 			}, render.CreateDexTLSSecret("cn"), render.CreateDexClientSecret(), "svc.cluster.local")
-
 			cfg.ElasticLicenseType = render.ElasticsearchLicenseTypeBasic
 
 			component := render.LogStorage(cfg)
@@ -1123,14 +1121,13 @@ var _ = Describe("Elasticsearch rendering tests", func() {
 
 var deleteLogStorageTests = func(managementCluster *operatorv1.ManagementCluster, managementClusterConnection *operatorv1.ManagementClusterConnection) func() {
 	return func() {
-		var logStorage *operatorv1.LogStorage
 		replicas := int32(1)
 		retention := int32(1)
 		var cfg *render.ElasticsearchConfiguration
 		BeforeEach(func() {
 			t := metav1.Now()
 
-			logStorage = &operatorv1.LogStorage{
+			logStorage := &operatorv1.LogStorage{
 				ObjectMeta: metav1.ObjectMeta{
 					Name:              "tigera-secure",
 					DeletionTimestamp: &t,

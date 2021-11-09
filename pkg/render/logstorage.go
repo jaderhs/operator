@@ -179,9 +179,9 @@ type ElasticsearchConfiguration struct {
 	ClusterConfig               *relasticsearch.ClusterConfig
 	ElasticsearchSecrets        []*corev1.Secret
 	KibanaSecrets               []*corev1.Secret
-	CuratorSecrets              []*corev1.Secret
 	PullSecrets                 []*corev1.Secret
 	Provider                    operatorv1.Provider
+	CuratorSecrets              []*corev1.Secret
 	ESService                   *corev1.Service
 	KbService                   *corev1.Service
 	ClusterDomain               string
