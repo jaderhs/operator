@@ -50,10 +50,9 @@ type resourceTestObj struct {
 
 var _ = Describe("Elasticsearch rendering tests", func() {
 	Context("Standalone cluster type", func() {
+		var cfg *render.ElasticsearchConfiguration
 		replicas := int32(1)
 		retention := int32(1)
-
-		var cfg *render.ElasticsearchConfiguration
 
 		BeforeEach(func() {
 			logStorage := &operatorv1.LogStorage{
@@ -638,7 +637,6 @@ var _ = Describe("Elasticsearch rendering tests", func() {
 
 	Context("NodeSet configuration", func() {
 		var cfg *render.ElasticsearchConfiguration
-
 		replicas, retention := int32(1), int32(1)
 
 		BeforeEach(func() {
@@ -1121,9 +1119,10 @@ var _ = Describe("Elasticsearch rendering tests", func() {
 
 var deleteLogStorageTests = func(managementCluster *operatorv1.ManagementCluster, managementClusterConnection *operatorv1.ManagementClusterConnection) func() {
 	return func() {
+		var cfg *render.ElasticsearchConfiguration
 		replicas := int32(1)
 		retention := int32(1)
-		var cfg *render.ElasticsearchConfiguration
+
 		BeforeEach(func() {
 			t := metav1.Now()
 
