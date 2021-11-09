@@ -1095,7 +1095,8 @@ func (r *ReconcileInstallation) Reconcile(ctx context.Context, request reconcile
 	// If we're on OpenShift on AWS render a Job (and needed resources) to
 	// setup the security groups we need for IPIP, BGP, and Typha communication.
 	if openShiftOnAws {
-		awsSetup, err := render.AWSSecurityGroupSetup(instance.Spec.ImagePullSecrets, &instance.Spec)
+		awsSGSetupCfg := &render.AWSSGSetupConfiguration{PullSecrets: instance.Spec.ImagePullSecrets, Installcr: &instance.Spec}
+		awsSetup, err := render.AWSSecurityGroupSetup(awsSGSetupCfg)
 		if err != nil {
 			// If there is a problem rendering this do not degrade or stop rendering
 			// anything else.
