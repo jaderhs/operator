@@ -1084,8 +1084,12 @@ func (r *ReconcileInstallation) Reconcile(ctx context.Context, request reconcile
 	operatorComponent := render.NewPassthrough(objs)
 	components = append(components, operatorComponent)
 
+	namespaceCfg := &render.NamespaceConfiguration{
+		Installation: &instance.Spec,
+		PullSecrets:  pullSecrets,
+	}
 	// Render namespaces for Calico.
-	components = append(components, render.Namespaces(&instance.Spec, pullSecrets))
+	components = append(components, render.Namespaces(namespaceCfg))
 
 	if newActiveCM != nil {
 		log.Info("adding active configmap")
