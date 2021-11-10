@@ -123,6 +123,7 @@ type EksCloudwatchLogConfig struct {
 	FetchInterval int32
 }
 
+// FluentdConfiguration contains all the config information needed to render the component.
 type FluentdConfiguration struct {
 	LC              *operatorv1.LogCollector
 	ESSecrets       []*corev1.Secret

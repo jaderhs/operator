@@ -50,6 +50,7 @@ func Guardian(cfg *GuardianConfiguration) Component {
 	}
 }
 
+// GuardianConfiguration contains all the config information needed to render the component.
 type GuardianConfiguration struct {
 	URL                 string
 	PullSecrets         []*corev1.Secret

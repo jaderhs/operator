@@ -45,10 +45,10 @@ var _ = Describe("monitor rendering tests", func() {
 		},
 	}
 
-	var cfg *monitor.MonitorConfiguration
+	var cfg *monitor.Config
 
 	BeforeEach(func() {
-		cfg = &monitor.MonitorConfiguration{
+		cfg = &monitor.Config{
 			Installation: &operatorv1.InstallationSpec{},
 			PullSecrets: []*corev1.Secret{
 				{ObjectMeta: metav1.ObjectMeta{Name: "tigera-pull-secret"}},

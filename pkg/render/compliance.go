@@ -71,6 +71,7 @@ func Compliance(cfg *ComplianceConfiguration) (Component, error) {
 	}, nil
 }
 
+// ComplianceConfiguration contains all the config information needed to render the component.
 type ComplianceConfiguration struct {
 	ESSecrets                   []*corev1.Secret
 	ManagerInternalTLSSecret    *corev1.Secret

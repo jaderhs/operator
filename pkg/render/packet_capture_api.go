@@ -51,6 +51,7 @@ const (
 	PacketCaptureTLSHashAnnotation = "hash.operator.tigera.io/packetcapture-certificate"
 )
 
+// PacketCaptureApiConfiguration contains all the config information needed to render the component.
 type PacketCaptureApiConfiguration struct {
 	PullSecrets        []*corev1.Secret
 	Openshift          bool

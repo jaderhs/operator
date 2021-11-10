@@ -55,6 +55,7 @@ func IntrusionDetection(cfg *IntrusionDetectionConfiguration) Component {
 	}
 }
 
+// IntrusionDetectionConfiguration contains all the config information needed to render the component.
 type IntrusionDetectionConfiguration struct {
 	LC                       *operatorv1.LogCollector
 	ESSecrets                []*corev1.Secret

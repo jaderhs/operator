@@ -31,6 +31,7 @@ func Namespaces(cfg *NamespaceConfiguration) Component {
 	}
 }
 
+// NamespaceConfiguration contains all the config information needed to render the component.
 type NamespaceConfiguration struct {
 	Installation *operatorv1.InstallationSpec
 	PullSecrets  []*corev1.Secret

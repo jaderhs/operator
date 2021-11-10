@@ -61,6 +61,7 @@ func Dex(cfg *DexComponentConfiguration) Component {
 	}
 }
 
+// DexComponentConfiguration contains all the config information needed to render the component.
 type DexComponentConfiguration struct {
 	PullSecrets   []*corev1.Secret
 	Openshift     bool

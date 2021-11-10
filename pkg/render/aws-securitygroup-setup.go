@@ -32,6 +32,7 @@ func AWSSecurityGroupSetup(cfg *AWSSGSetupConfiguration) (Component, error) {
 	return &awsSGSetupComponent{cfg: cfg}, nil
 }
 
+// AWSSGSetupConfiguration contains all the config information needed to render the component.
 type AWSSGSetupConfiguration struct {
 	PullSecrets []corev1.LocalObjectReference
 	Installcr   *operatorv1.InstallationSpec

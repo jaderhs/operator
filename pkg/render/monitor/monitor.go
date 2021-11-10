@@ -57,20 +57,21 @@ const (
 	prometheusServiceAccountName = "prometheus"
 )
 
-func Monitor(cfg *MonitorConfiguration) render.Component {
+func Monitor(cfg *Config) render.Component {
 	return &monitorComponent{
 		cfg: cfg,
 	}
 }
 
-type MonitorConfiguration struct {
+// Config contains all the config information needed to render the Monitor component.
+type Config struct {
 	Installation             *operatorv1.InstallationSpec
 	PullSecrets              []*corev1.Secret
 	AlertmanagerConfigSecret *corev1.Secret
 }
 
 type monitorComponent struct {
-	cfg               *MonitorConfiguration
+	cfg               *Config
 	alertmanagerImage string
 	prometheusImage   string
 }

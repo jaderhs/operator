@@ -117,6 +117,7 @@ func Manager(cfg *ManagerConfiguration) (Component, error) {
 	}, nil
 }
 
+// ManagerConfiguration contains all the config information needed to render the component.
 type ManagerConfiguration struct {
 	KeyValidatorConfig            authentication.KeyValidatorConfig
 	ESSecrets                     []*corev1.Secret

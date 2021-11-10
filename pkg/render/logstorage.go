@@ -169,6 +169,7 @@ func LogStorage(cfg *ElasticsearchConfiguration) Component {
 	}
 }
 
+// ElasticsearchConfiguration contains all the config information needed to render the component.
 type ElasticsearchConfiguration struct {
 	LogStorage                  *operatorv1.LogStorage
 	Installation                *operatorv1.InstallationSpec
