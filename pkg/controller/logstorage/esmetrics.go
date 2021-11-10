@@ -46,7 +46,7 @@ func (r *ReconcileLogStorage) createEsMetrics(
 		return reconcile.Result{}, false, nil
 	}
 
-	esMetricsCfg := &esmetrics.ElasticsearchMetricsConfiguration{
+	esMetricsCfg := &esmetrics.Config{
 		Installation:         install,
 		PullSecrets:          pullSecrets,
 		ESConfig:             clusterConfig,

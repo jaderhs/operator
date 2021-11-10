@@ -34,13 +34,13 @@ const (
 	ElasticsearchMetricsSecret = "tigera-ee-elasticsearch-metrics-elasticsearch-access"
 )
 
-func ElasticsearchMetrics(cfg *ElasticsearchMetricsConfiguration) render.Component {
+func ElasticsearchMetrics(cfg *Config) render.Component {
 	return &elasticsearchMetrics{
 		cfg: cfg,
 	}
 }
 
-type ElasticsearchMetricsConfiguration struct {
+type Config struct {
 	Installation         *operatorv1.InstallationSpec
 	PullSecrets          []*corev1.Secret
 	ESConfig             *relasticsearch.ClusterConfig
@@ -50,7 +50,7 @@ type ElasticsearchMetricsConfiguration struct {
 }
 
 type elasticsearchMetrics struct {
-	cfg            *ElasticsearchMetricsConfiguration
+	cfg            *Config
 	esMetricsImage string
 }
 

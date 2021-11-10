@@ -35,7 +35,7 @@ import (
 var _ = Describe("Elasticsearch metrics", func() {
 	Context("Rendering resources", func() {
 		var esConfig *relasticsearch.ClusterConfig
-		var cfg *ElasticsearchMetricsConfiguration
+		var cfg *Config
 
 		BeforeEach(func() {
 			installation := &operatorv1.InstallationSpec{
@@ -45,7 +45,7 @@ var _ = Describe("Elasticsearch metrics", func() {
 
 			esConfig = relasticsearch.NewClusterConfig("cluster", 1, 1, 1)
 
-			cfg = &ElasticsearchMetricsConfiguration{
+			cfg = &Config{
 				Installation:         installation,
 				PullSecrets:          []*corev1.Secret{{ObjectMeta: metav1.ObjectMeta{Name: "pullsecret", Namespace: render.ElasticsearchNamespace}}},
 				ESConfig:             esConfig,
