@@ -36,6 +36,35 @@ type IntrusionDetectionSpec struct {
 	// IntrusionDetectionControllerDeployment configures the IntrusionDetection Controller Deployment.
 	// +optional
 	IntrusionDetectionControllerDeployment *IntrusionDetectionControllerDeployment `json:"intrusionDetectionControllerDeployment,omitempty"`
+	DeepPacketInspectionDaemonSet          *DeepPacketInspectionDaemonSet          `json:"deepPacketInspectionDaemonSet,omitempty"`
+}
+
+type DeepPacketInspectionDaemonSet struct {
+	// +optional
+	Metadata *Metadata `json:"metadata,omitempty"`
+	// +optional
+	Spec *DeepPacketInspectionDaemonSetSpec `json:"spec,omitempty"`
+}
+
+type DeepPacketInspectionDaemonSetSpec struct {
+	// +optional
+	Template *DeepPacketInspectionDaemonSetPodTemplateSpec `json:"template,omitempty"`
+}
+
+type DeepPacketInspectionDaemonSetPodTemplateSpec struct {
+	// +optional
+	Metadata *Metadata `json:"metadata,omitempty"`
+	// +optional
+	Spec *DeepPacketInspectionDaemonSetPodSpec `json:"spec,omitempty"`
+}
+
+type DeepPacketInspectionDaemonSetPodSpec struct {
+	// +optional
+	Affinity *corev1.Affinity `json:"affinity,omitempty"`
+	// +optional
+	NodeSelector map[string]string `json:"nodeSelector,omitempty"`
+	// +optional
+	Tolerations []corev1.Toleration `json:"tolerations,omitempty"`
 }
 
 type AnomalyDetectionSpec struct {
