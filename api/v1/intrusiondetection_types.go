@@ -133,6 +133,13 @@ type IntrusionDetectionControllerDeploymentPodSpec struct {
 	// If omitted, the IntrusionDetectionController Deployment will use its default values for its containers.
 	// +optional
 	Containers []IntrusionDetectionControllerDeploymentContainer `json:"containers,omitempty"`
+
+	// +optional
+	Affinity *corev1.Affinity `json:"affinity,omitempty"`
+	// +optional
+	NodeSelector map[string]string `json:"nodeSelector,omitempty"`
+	// +optional
+	Tolerations []corev1.Toleration `json:"tolerations,omitempty"`
 }
 
 // IntrusionDetectionControllerDeploymentContainer is a IntrusionDetectionController Deployment container.
